@@ -83,10 +83,10 @@ export function VerifyIntro() {
                 <ShieldIcon className="h-12 w-12" />
               </div>
             </div>
-            <h2 className="text-center text-[28px] font-semibold leading-tight tracking-tight">
+            <h2 className="text-center text-[28px] font-semibold leading-tight tracking-tight text-ink">
               Verify your identity
             </h2>
-            <p className="mt-2 text-center text-[16px] leading-6 text-slate">
+            <p className="mt-2 text-center text-[16px] leading-6 text-muted">
               Unlock full access to Harbor. Your photos are encrypted and used
               only for this check.
             </p>
@@ -101,10 +101,10 @@ export function VerifyIntro() {
                     <reason.icon />
                   </span>
                   <div>
-                    <p className="font-semibold tracking-tight">
+                    <p className="font-semibold tracking-tight text-ink">
                       {reason.title}
                     </p>
-                    <p className="mt-0.5 text-sm leading-5 text-slate">
+                    <p className="mt-0.5 text-sm leading-5 text-muted">
                       {reason.body}
                     </p>
                   </div>
@@ -124,17 +124,17 @@ export function VerifyIntro() {
                 <CameraIcon className="h-12 w-12" />
               </div>
             </div>
-            <h2 className="text-center text-[28px] font-semibold leading-tight tracking-tight">
+            <h2 className="text-center text-[28px] font-semibold leading-tight tracking-tight text-ink">
               Allow camera access
             </h2>
-            <p className="mt-2 text-center text-[16px] leading-6 text-slate">
+            <p className="mt-2 text-center text-[16px] leading-6 text-muted">
               Harbor uses your camera to scan your ID and take a liveness
               selfie. Nothing is posted or used for ads.
             </p>
 
             <div className="mt-6 space-y-3 rounded-3xl bg-white p-4">
-              <p className="text-sm font-semibold">You’ll need</p>
-              <ul className="space-y-2 text-sm leading-5 text-slate">
+              <p className="text-sm font-semibold text-ink">You’ll need</p>
+              <ul className="space-y-2 text-sm leading-5 text-muted">
                 <li>A passport, driver’s license, or national ID</li>
                 <li>A well-lit space and a steady hand</li>
                 <li>Your face, without sunglasses or a mask</li>

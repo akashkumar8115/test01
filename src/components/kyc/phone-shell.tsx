@@ -58,7 +58,7 @@ export function PhoneShell({
   return (
     <div
       className={cn(
-        "relative mx-auto flex h-dvh w-full flex-col overflow-hidden bg-canvas md:h-[min(760px,calc(100dvh-4rem))] md:w-[390px] md:rounded-[40px] md:border md:border-white/10 md:shadow-[0_30px_80px_rgb(0_0_0_/_0.45)]",
+        "relative isolate mx-auto flex h-dvh w-full flex-col overflow-hidden bg-canvas text-ink md:h-[min(760px,calc(100dvh-4rem))] md:w-[390px] md:rounded-[40px] md:border md:border-white/10 md:shadow-[0_30px_80px_rgb(0_0_0_/_0.45)]",
         dark && "bg-ink text-white",
       )}
     >
@@ -92,10 +92,10 @@ export function StudioFrame({ children }: { children: ReactNode }) {
             <HarborMark className="text-brand" />
             <div>
               <p className="text-sm font-semibold tracking-tight">Harbor</p>
-              <p className="text-xs text-white/55">KYC prototype</p>
+              <p className="text-xs text-white/80">KYC prototype</p>
             </div>
           </div>
-          <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/40">
+          <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/70">
             Happy path
           </p>
           <nav aria-label="Verification flow" className="space-y-1">
@@ -110,7 +110,7 @@ export function StudioFrame({ children }: { children: ReactNode }) {
                     "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition-colors",
                     active
                       ? "bg-white/10 text-white"
-                      : "text-white/60 hover:bg-white/5 hover:text-white",
+                      : "text-white/80 hover:bg-white/5 hover:text-white",
                   )}
                 >
                   <span
@@ -132,28 +132,28 @@ export function StudioFrame({ children }: { children: ReactNode }) {
           </div>
         </aside>
 
-        <main className="flex items-center justify-center p-0 lg:p-8">
+        <main className="flex items-center justify-center p-0 text-ink lg:p-8">
           {children}
         </main>
 
         <aside className="hidden flex-col justify-between border-l border-white/10 p-6 lg:flex">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/40">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/70">
               Current screen
             </p>
             <h2 className="mt-2 text-xl font-semibold tracking-tight">
               {current?.label}
             </h2>
-            <p className="mt-3 text-sm leading-6 text-white/65">
+            <p className="mt-3 text-sm leading-6 text-white/80">
               {current?.note}
             </p>
           </div>
-          <div className="space-y-3 text-sm text-white/60">
+          <div className="space-y-3 text-sm text-white/80">
             <p>
               Tap targets are at least 44px. Copy stays at 16px+ on key
               actions. Scan feedback uses a live region.
             </p>
-            <p className="text-white/40">Harbor Financial · Identity flow</p>
+            <p className="text-white/70">Harbor Financial · Identity flow</p>
           </div>
         </aside>
       </div>

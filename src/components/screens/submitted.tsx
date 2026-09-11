@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import { useKyc } from "@/components/kyc/kyc-provider";
 import { PhoneShell } from "@/components/kyc/phone-shell";
@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { CheckIcon, ClockIcon } from "@/components/ui/icons";
 
 export function Submitted() {
+  const router = useRouter();
   const { referenceId, details } = useKyc();
 
   return (
@@ -27,21 +28,21 @@ export function Submitted() {
             </div>
           </div>
 
-          <h1 className="mt-6 text-center text-[28px] font-semibold leading-tight tracking-tight">
+          <h1 className="mt-6 text-center text-[28px] font-semibold leading-tight tracking-tight text-ink">
             Submission received
           </h1>
-          <p className="mt-2 text-center text-[16px] leading-6 text-slate">
+          <p className="mt-2 text-center text-[16px] leading-6 text-muted">
             Thanks, {details.fullName.split(" ")[0]}. We’re reviewing your
             documents now. This usually takes about 5 minutes.
           </p>
 
           <div className="mt-6 rounded-3xl bg-white p-4">
             <div className="flex items-center justify-between text-sm">
-              <span className="text-slate">Reference</span>
-              <span className="font-semibold">{referenceId ?? "HRB-PENDING"}</span>
+              <span className="text-muted">Reference</span>
+              <span className="font-semibold text-ink">{referenceId ?? "HRB-PENDING"}</span>
             </div>
             <div className="mt-3 flex items-center justify-between text-sm">
-              <span className="text-slate">Status</span>
+              <span className="text-muted">Status</span>
               <span className="inline-flex min-h-8 items-center rounded-full bg-gold-soft px-3 text-sm font-semibold text-gold">
                 In review
               </span>
@@ -54,8 +55,8 @@ export function Submitted() {
                 <CheckIcon className="h-4 w-4" />
               </span>
               <div>
-                <p className="font-semibold">Documents submitted</p>
-                <p className="text-sm text-slate">Encrypted and received</p>
+                <p className="font-semibold text-ink">Documents submitted</p>
+                <p className="text-sm text-muted">Encrypted and received</p>
               </div>
             </li>
             <li className="flex gap-3">
@@ -63,26 +64,24 @@ export function Submitted() {
                 <ClockIcon className="h-4 w-4" />
               </span>
               <div>
-                <p className="font-semibold">Automated review</p>
-                <p className="text-sm text-slate">Matching ID and selfie</p>
+                <p className="font-semibold text-ink">Automated review</p>
+                <p className="text-sm text-muted">Matching ID and selfie</p>
               </div>
             </li>
-            <li className="flex gap-3 text-slate">
+            <li className="flex gap-3 text-muted">
               <span className="flex h-8 w-8 items-center justify-center rounded-full bg-canvas">
                 3
               </span>
               <div>
                 <p className="font-semibold text-ink">Wallet unlocked</p>
-                <p className="text-sm">We’ll notify you when it’s done</p>
+                <p className="text-sm text-muted">We’ll notify you when it’s done</p>
               </div>
             </li>
           </ol>
 
           <div className="mt-auto space-y-3 pt-6">
             <TrustNote />
-            <Link href="/" className="block">
-              <Button>Back to wallet</Button>
-            </Link>
+            <Button onClick={() => router.push("/")}>Back to wallet</Button>
           </div>
         </div>
       </Screen>

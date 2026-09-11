@@ -26,11 +26,13 @@ export function ScanId() {
     (item) => item.side === "front" && item.quality === "good",
   );
   const side = hasBack && frontDone ? "back" : "front";
+  const [align, setAlign] = useState<AlignState>("searching");
+  const [flashOn, setFlashOn] = useState(false);
+  const [rearCamera, setRearCamera] = useState(true);
   const { videoRef, ready } = useCamera(
-    "environment",
+    rearCamera ? "environment" : "user",
     cameraPermission === "granted",
   );
-  const [align, setAlign] = useState<AlignState>("searching");
 
   useEffect(() => {
     setAlign("searching");
@@ -70,7 +72,7 @@ export function ScanId() {
             {documentLabel(documentType).toLowerCase()}
           </p>
           <p
-            className="mt-1 text-center text-sm text-white/65"
+            className="mt-1 text-center text-sm text-white"
             aria-live="polite"
           >
             {feedback}
@@ -96,6 +98,10 @@ export function ScanId() {
               </div>
             ) : null}
 
+            {flashOn ? (
+              <div className="pointer-events-none absolute inset-0 bg-white/25" />
+            ) : null}
+
             <div
               className={cn(
                 "pointer-events-none absolute inset-5 rounded-2xl border-2",
@@ -114,27 +120,38 @@ export function ScanId() {
           </div>
         </div>
 
-        <div className="mt-4 grid grid-cols-3 gap-2 px-5 text-center text-[12px] text-white/70">
+        <div className="mt-4 grid grid-cols-3 gap-2 px-5 text-center text-[12px] font-medium text-white">
           <p>Fill the frame</p>
           <p>Avoid glare</p>
           <p>Hold steady</p>
         </div>
 
         <div className="mt-auto flex items-center justify-between px-8 py-6">
-          <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10">
+          <button
+            type="button"
+            aria-pressed={flashOn}
+            aria-label={flashOn ? "Turn flash off" : "Turn flash on"}
+            onClick={() => setFlashOn((value) => !value)}
+            className="flex h-11 w-11 items-center justify-center rounded-full bg-white/15 text-white"
+          >
             <SunIcon />
-          </span>
+          </button>
           <button
             type="button"
             aria-label="Capture ID photo"
             onClick={() => capture()}
-            className="flex h-[72px] w-[72px] items-center justify-center rounded-full border-4 border-white bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+            className="flex h-[72px] w-[72px] items-center justify-center rounded-full border-4 border-white bg-white/20 text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
           >
             <span className="h-14 w-14 rounded-full bg-white" />
           </button>
-          <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10">
+          <button
+            type="button"
+            aria-label={rearCamera ? "Switch to front camera" : "Switch to rear camera"}
+            onClick={() => setRearCamera((value) => !value)}
+            className="flex h-11 w-11 items-center justify-center rounded-full bg-white/15 text-white"
+          >
             <CameraIcon className="h-5 w-5" />
-          </span>
+          </button>
         </div>
 
         <div className="px-5 pb-5">

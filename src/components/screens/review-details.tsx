@@ -38,12 +38,10 @@ export function ReviewDetails() {
     },
   });
 
+  const type = documentType ?? "license";
   const front = captures.find((item) => item.side === "front");
   const canSubmit =
-    consent &&
-    details.fullName.trim().length > 1 &&
-    Boolean(documentType) &&
-    !submit.isPending;
+    consent && details.fullName.trim().length > 1 && !submit.isPending;
 
   return (
     <PhoneShell>
@@ -51,11 +49,11 @@ export function ReviewDetails() {
         <ScreenHeader title="Review details" backHref="/verify/selfie" />
         <StepProgress step={4} />
         <div className="flex flex-1 flex-col px-5 pb-6">
-          <h2 className="text-[26px] font-semibold leading-tight tracking-tight">
+          <h2 className="text-[26px] font-semibold leading-tight tracking-tight text-ink">
             Confirm this is correct
           </h2>
-          <p className="mt-2 text-[16px] leading-6 text-slate">
-            We read these details from your {documentLabel(documentType).toLowerCase()}.
+          <p className="mt-2 text-[16px] leading-6 text-muted">
+            We read these details from your {documentLabel(type).toLowerCase()}.
             Edit anything that doesn’t match.
           </p>
 
@@ -92,9 +90,9 @@ export function ReviewDetails() {
             className="mt-4 space-y-3"
             onSubmit={(event) => {
               event.preventDefault();
-              if (!documentType || !canSubmit) return;
+              if (!canSubmit) return;
               submit.mutate({
-                documentType,
+                documentType: type,
                 ...details,
               });
             }}
@@ -120,12 +118,12 @@ export function ReviewDetails() {
               value={details.nationality}
               onChange={(value) => updateDetails({ nationality: value })}
             />
-            <p className="text-sm text-slate">
+            <p className="text-sm text-muted">
               Expires {formatDate(details.expiry)} ·{" "}
-              {documentLabel(documentType)}
+              {documentLabel(type)}
             </p>
 
-            <label className="flex items-start gap-3 rounded-2xl bg-white p-3.5 text-sm leading-5">
+            <label className="flex items-start gap-3 rounded-2xl bg-white p-3.5 text-sm leading-5 text-ink">
               <input
                 type="checkbox"
                 className="mt-1 h-5 w-5 accent-brand"
@@ -171,7 +169,7 @@ function Field({
   const id = label.toLowerCase().replace(/\s+/g, "-");
   return (
     <label className="block" htmlFor={id}>
-      <span className="mb-1.5 block text-[13px] font-medium text-slate">
+      <span className="mb-1.5 block text-[13px] font-medium text-muted">
         {label}
       </span>
       <input

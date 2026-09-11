@@ -20,7 +20,7 @@ export function Button({
       className={cn(
         "inline-flex items-center justify-center gap-2 rounded-2xl font-semibold tracking-[-0.01em] transition-colors",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2",
-        "disabled:pointer-events-none disabled:opacity-45",
+        "disabled:pointer-events-none disabled:opacity-70",
         size === "lg" && "min-h-14 w-full px-5 text-[16px]",
         size === "md" && "min-h-12 px-4 text-[15px]",
         size === "sm" && "min-h-10 px-3 text-sm",

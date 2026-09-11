@@ -90,13 +90,13 @@ export function PreviewId() {
           </div>
 
           {blurry ? (
-            <ul className="mt-4 space-y-2 text-sm leading-5 text-slate">
+            <ul className="mt-4 space-y-2 text-sm leading-5 text-muted">
               <li>Clean the camera lens</li>
               <li>Avoid shadows and reflections</li>
               <li>Place the ID fully inside the frame</li>
             </ul>
           ) : (
-            <p className="mt-4 text-sm leading-5 text-slate">
+            <p className="mt-4 text-sm leading-5 text-muted">
               Using {documentLabel(documentType).toLowerCase()}
               {latest ? ` · ${latest.side}` : ""}. Make sure names and dates
               match the physical document.
@@ -115,8 +115,16 @@ export function PreviewId() {
                 Retake photo
               </Button>
             ) : (
-              <Button onClick={continueFlow} disabled={!latest}>
-                {needsNextSide ? "Scan the back" : "Use this photo"}
+              <Button
+                onClick={() =>
+                  latest ? continueFlow() : router.push("/verify/scan")
+                }
+              >
+                {!latest
+                  ? "Scan ID"
+                  : needsNextSide
+                    ? "Scan the back"
+                    : "Use this photo"}
               </Button>
             )}
             <Button

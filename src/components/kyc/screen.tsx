@@ -14,7 +14,9 @@ export function Screen({
   className?: string;
 }) {
   return (
-    <div className={cn("flex min-h-full flex-1 flex-col bg-canvas", className)}>
+    <div
+      className={cn("flex min-h-full flex-1 flex-col bg-canvas text-ink", className)}
+    >
       {children}
     </div>
   );
@@ -111,7 +113,7 @@ export function TrustNote({ light = false }: { light?: boolean }) {
     <p
       className={cn(
         "px-1 text-center text-[12px] leading-5",
-        light ? "text-white/60" : "text-slate",
+        light ? "text-white/80" : "text-muted",
       )}
     >
       Encrypted in transit and at rest. Used only to verify your identity.

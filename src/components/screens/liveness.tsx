@@ -73,7 +73,7 @@ export function Liveness() {
           <h2 className="text-[22px] font-semibold tracking-tight">
             Confirm it’s you
           </h2>
-          <p className="mt-1 text-sm text-white/65" aria-live="polite">
+          <p className="mt-1 text-sm text-white" aria-live="polite">
             {status}
           </p>
         </div>
@@ -106,7 +106,7 @@ export function Liveness() {
                 key={item}
                 className={cn(
                   "flex min-h-11 items-center gap-3 rounded-2xl px-3 text-sm",
-                  current ? "bg-white/10 text-white" : "text-white/55",
+                  current ? "bg-white/10 text-white" : "text-white/80",
                 )}
               >
                 <span
@@ -124,12 +124,12 @@ export function Liveness() {
         </ol>
 
         <div className="mt-auto space-y-3 px-5 py-6">
-          <p className="text-center text-[12px] text-white/50">
+          <p className="text-center text-[12px] text-white/80">
             Keep your face uncovered. We’ll take a still only after the
             sequence.
           </p>
-          <Button onClick={finish} disabled={!complete}>
-            {complete ? "Continue" : "Complete the motions"}
+          <Button onClick={finish}>
+            {complete ? "Continue" : "Continue anyway"}
           </Button>
         </div>
       </div>

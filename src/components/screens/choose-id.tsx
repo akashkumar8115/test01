@@ -28,7 +28,9 @@ function DocumentGlyph({ id }: { id: DocumentType }) {
 export function ChooseId() {
   const router = useRouter();
   const { documentType, setDocumentType } = useKyc();
-  const [selected, setSelected] = useState<DocumentType | null>(documentType);
+  const [selected, setSelected] = useState<DocumentType | null>(
+    documentType ?? "license",
+  );
 
   return (
     <PhoneShell>
@@ -36,10 +38,10 @@ export function ChooseId() {
         <ScreenHeader title="Choose an ID" backHref="/verify" />
         <StepProgress step={2} />
         <div className="flex flex-1 flex-col px-5 pb-6">
-          <h2 className="text-[28px] font-semibold leading-tight tracking-tight">
+          <h2 className="text-[28px] font-semibold leading-tight tracking-tight text-ink">
             Which document do you want to use?
           </h2>
-          <p className="mt-2 text-[16px] leading-6 text-slate">
+          <p className="mt-2 text-[16px] leading-6 text-muted">
             Use an original, unexpired document. Photos of screenshots won’t be
             accepted.
           </p>
@@ -55,7 +57,7 @@ export function ChooseId() {
                   aria-selected={active}
                   onClick={() => setSelected(option.id)}
                   className={cn(
-                    "flex min-h-[84px] w-full items-center gap-3 rounded-3xl border bg-white p-4 text-left transition-colors",
+                    "flex min-h-[84px] w-full items-center gap-3 rounded-3xl border bg-white p-4 text-left text-ink transition-colors",
                     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand",
                     active
                       ? "border-brand bg-brand-soft"
@@ -73,10 +75,10 @@ export function ChooseId() {
                     <DocumentGlyph id={option.id} />
                   </span>
                   <span className="flex-1">
-                    <span className="block font-semibold tracking-tight">
+                    <span className="block font-semibold tracking-tight text-ink">
                       {option.title}
                     </span>
-                    <span className="mt-0.5 block text-sm text-slate">
+                    <span className="mt-0.5 block text-sm text-muted">
                       {option.description}
                     </span>
                   </span>
